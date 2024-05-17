@@ -1,13 +1,21 @@
-use axum::{routing::any, Router};
-use rakceptor::handlers;
+#[tokio::main]
+async fn main() {
+    antiquarian::tracing::init_tracing();
 
-#[shuttle_runtime::main]
-async fn main() -> shuttle_axum::ShuttleAxum {
-    let db = rakceptor::init_db().await.expect("to initialize database");
+    let addr = std::net::SocketAddr::from(([127, 0, 0, 1], 8000));
 
-    let router = Router::new()
-        .route("/*path", any(handlers::collector))
-        .with_state(db);
+    let database = antiquarian::database::sqlite::init_db()
+        .await
+        .expect("to initialize database");
 
-    Ok(router.into())
+    let router = antiquarian::build_router(database);
+
+    let listener = tokio::net::TcpListener::bind(addr)
+        .await
+        .expect("to bind listener to address");
+
+    tracing::info!("Starting server at: {}", addr);
+    axum::serve(listener, router)
+        .await
+        .expect("to bind server to address");
 }
