@@ -2,7 +2,10 @@
 async fn main() {
     antiquarian::tracing::init_tracing();
 
-    let addr = std::net::SocketAddr::from(([127, 0, 0, 1], 8000));
+    let addr: std::net::SocketAddr = std::env::var("ANTIQUARIAN_LISTEN_ADDR")
+        .unwrap_or_else(|_| "127.0.0.1:8000".to_owned())
+        .parse()
+        .expect("Invalid address format");
 
     let database = antiquarian::database::sqlite::init_db()
         .await

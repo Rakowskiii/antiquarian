@@ -5,8 +5,19 @@ edition = "2021"
 authors = ["Maciej Rak <maciejrak@protonmail.com>"]
 license = "MIT"
 
-keywords = ["security", "intercept", "api"]
-description = "A simple webservice to store all incoming requests, similarly to Burp Interceptor."
+keywords = [
+    "security",
+    "interceptor",
+    "api",
+    "record",
+    "requests",
+    "http",
+    "burp",
+    "proxy",
+    "webservice",
+]
+categories = ["security-research", "api-tools", "web-development", "testing"]
+description = "A self-hosted tool to capture and inspect incoming HTTP requests for security research within private networks."
 
 [dependencies]
 axum = "0.7.4"
