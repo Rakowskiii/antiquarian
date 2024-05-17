@@ -29,6 +29,7 @@ impl IntoResponse for Error {
 
 pub fn build_router<D: Database>(database: D) -> Router {
     Router::new()
+        //TODO: Handle base path
         .route("/*path", any(handlers::collector::<D>))
         .with_state(database)
 }

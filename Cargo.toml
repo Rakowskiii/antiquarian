@@ -5,19 +5,12 @@ edition = "2021"
 authors = ["Maciej Rak <maciejrak@protonmail.com>"]
 license = "MIT"
 
-keywords = [
-    "security",
-    "interceptor",
-    "api",
-    "record",
-    "requests",
-    "http",
-    "burp",
-    "proxy",
-    "webservice",
-]
+keywords = ["security", "interceptor", "api", "requests", "http"]
 categories = ["security-research", "api-tools", "web-development", "testing"]
 description = "A self-hosted tool to capture and inspect incoming HTTP requests for security research within private networks."
+documentation = "https://github.com/Rakowskiii/antiquarian"
+homepage = "https://github.com/Rakowskiii/antiquarian"
+repository = "https://github.com/Rakowskiii/antiquarian"
 
 [dependencies]
 axum = "0.7.4"
